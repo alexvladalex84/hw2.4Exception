@@ -15,7 +15,6 @@ public class Service1Impl implements Service1 {
                 return " Login содержит недопустимые символы или их длина больше 20 символов,";
             }
         }
-//        return " Ваш логин : " + login;
         else if (!password.contains("_") ||!password.matches("\\w+") ||  password.length() > 20) {
             try {
                 throw new WrongPasswordException();
@@ -35,7 +34,3 @@ public class Service1Impl implements Service1 {
     }
 
 }
-/*Параметр Login содержит в себе только латинские буквы, цифры и знак подчеркивания.
-Например, java_skypro_go. У параметра login есть ограничение по длине – он должен быть равен или меньше 20 символов.
- Если login длиннее 20 символов или содержит
-в себе недопустимые символы, то необходимо выбросить исключение – WrongLoginException.*/

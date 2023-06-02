@@ -4,33 +4,30 @@ import org.springframework.stereotype.Service;
 import pro.sky.homework2.exception.Controller.Exceptions.WrongLoginException;
 import pro.sky.homework2.exception.Controller.Exceptions.WrongPasswordException;
 
+
 @Service
 public class Service1Impl implements Service1 {
 
-    public String cheekloginPasswordAndConfirmPassword(String login, String password, String confirmPassword) {
+
+    public String cheсkloginPasswordAndConfirmPassword(String login, String password, String confirmPassword) {
         if (!login.contains("_") || !login.matches("\\w+") || login.length() > 20) {
-            try {
-                throw new WrongLoginException();
-            } catch (WrongLoginException e) {
-                return " Login содержит недопустимые символы или их длина больше 20 символов,";
-            }
-        }
-        else if (!password.contains("_") ||!password.matches("\\w+") ||  password.length() > 20) {
-            try {
-                throw new WrongPasswordException();
-            } catch (WrongPasswordException e) {
-                return " Password содержит недопустимые символы или их длина больше 20 символов ";
-            }
+
+            throw new WrongLoginException("Логин содержит недопустимые символы или их длина больше 20 символов");
+
+        } else if (!password.contains("_") || !password.matches("\\w+") || password.length() > 20) {
+
+            throw new WrongPasswordException("Пароль содержит недопустимые символы или их длина больше 20 символов ");
+
+
         } else if (!password.equals(confirmPassword)) {
-            try {
-                throw new WrongPasswordException();
-            } catch (WrongPasswordException e) {
-                return " пароли не совпадают !";
-            }
+
+            throw new WrongPasswordException("Символы в паролях не совпадают");
         }
 
 
         return login + " " + password + " " + confirmPassword;
     }
-
 }
+
+
+
